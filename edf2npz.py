@@ -1,3 +1,4 @@
+from tkinter import E
 import mne
 import os
 import numpy as np
@@ -37,14 +38,15 @@ def mne_read_edf(root_dir, subject):
 
 
 if __name__ == '__main__':
-    root_dir = "/media/hit/1/EEG_Personal_Identification/files/"
-    save_dir = '/media/hit/1/EEG_Personal_Identification/npz/'
+    root_dir = "/home/eric/Documents/UT/HACKATHON/data/edf/"
+    save_dir = '/home/eric/Documents/UT/HACKATHON/data/npz/'
     # save_dir = '/media/hit/1/EEG_Personal_Identification/mnenpz/'
     for subject in os.listdir(root_dir):
-        print(subject)
+        print('SUBJECT', subject)
         if not os.path.isdir(root_dir + subject):
             continue
         eyes_open_data, eyes_closed_data = read_edf(root_dir, subject)
+        print(eyes_open_data)
         # eyes_open_data, eyes_closed_data = mne_read_edf(root_dir, subject)
         np.savez(save_dir + subject + '.npz',
                  eyes_open_data=eyes_open_data,
